@@ -50,4 +50,5 @@ const login_post = async (req, res) => {
       res.status(500).json({ error: err });
     });
 };
+
 module.exports = { signup_post, login_post };

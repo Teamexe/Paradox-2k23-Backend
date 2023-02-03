@@ -6,6 +6,7 @@ const port = process.env.PORT || 8080;
 const User = require("./models/User.js");
 
 const authController = require("./controllers/auth.controller.js");
+const userController = require("./controllers/user.controller.js");
 const hashVerifier = require("./middleware/authMiddleware.js");
 
 const app = express();
@@ -24,6 +25,7 @@ app.get(
 );
 app.post("/signup", authController.signup_post);
 app.post("/login", authController.login_post);
+app.post("/createUser", userController.CreateUser);
 
 mongoose
   .connect(
