@@ -8,6 +8,7 @@ const User = require("./models/User.js");
 const authController = require("./controllers/auth.controller.js");
 const userController = require("./controllers/user.controller.js");
 const hashVerifier = require("./middleware/authMiddleware.js");
+const authRoutes = require("./routes/auth.routes");
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,9 +24,11 @@ app.get(
   hashVerifier.md5HashVerifier,
   (req, res) => [res.status(200).json("hello")]
 );
-app.post("/signup", authController.signup_post);
-app.post("/login", authController.login_post);
-app.post("/createUser", userController.CreateUser);
+
+app.use("/auth", authRoutes);
+// app.post("/signup", authController.signup_post);
+// app.post("/login", authController.login_post);
+// app.post("/createUser", userController.CreateUser);
 
 mongoose
   .connect(
