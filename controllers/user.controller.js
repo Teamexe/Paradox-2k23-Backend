@@ -15,7 +15,9 @@ const CreateUser = (req, res) => {
   });
   ParadoxUser.findOne({ uid: uid }, (error, user) => {
     if (error) {
-      return res.status(200).json({ message: error.message, success: "true" });
+      return res
+        .status(200)
+        .json({ message: error.message, success: "true", data: " " });
     }
     if (!user) {
       newUser
@@ -23,15 +25,21 @@ const CreateUser = (req, res) => {
         .then((result) => {
           return res
             .status(200)
-            .json({ message: "User Created", success: "true" });
+            .json({ message: "User Created", success: "true", data: " " });
         })
         .catch((err) =>
           res
             .status(200)
-            .json({ message: "Unable to create user", success: "false" })
+            .json({
+              message: "Unable to create user",
+              success: "false",
+              data: " ",
+            })
         );
     } else {
-      return res.status(200).json({ message: "User already exisits" });
+      return res
+        .status(200)
+        .json({ message: "User already exisits", success: "false", data: " " });
     }
   });
 };
