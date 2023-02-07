@@ -2,11 +2,12 @@ const User = require("../models/User");
 const ParadoxUser = require("../models/paradoxUser.model");
 
 const CreateUser = (req, res) => {
-  const { uid, name, roll, ref_code, team_code, team_name } = req.body;
+  const { uid, name, email, roll, ref_code, team_code, team_name } = req.body;
 
   const newUser = new ParadoxUser({
     uid: uid,
     name: name,
+    email: email,
     roll: roll,
     ref_code: ref_code,
     team_code: team_code,

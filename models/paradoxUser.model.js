@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const ParadoxUserSchema = new mongoose.Schema({
   uid: String,
   name: String,
+  email: String,
   roll: String,
   ref_code: String,
   team_code: String,

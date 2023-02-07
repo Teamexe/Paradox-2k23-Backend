@@ -25,7 +25,12 @@ app.get(
   (req, res) => [res.status(200).json("hello")]
 );
 
-app.use("/auth", authRoutes);
+app.use(
+  "/auth",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  authRoutes
+);
 // app.post("/signup", authController.signup_post);
 // app.post("/login", authController.login_post);
 // app.post("/createUser", userController.CreateUser);
