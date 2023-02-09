@@ -5,10 +5,12 @@ const mongoose = require("mongoose");
 const port = process.env.PORT || 8080;
 const User = require("./models/User.js");
 
-const authController = require("./controllers/auth.controller.js");
-const userController = require("./controllers/user.controller.js");
+// const authController = require("./controllers/auth.controller.js");
+// const userController = require("./controllers/user.controller.js");
 const hashVerifier = require("./middleware/authMiddleware.js");
 const authRoutes = require("./routes/auth.routes");
+// const homeRoutes = require("./routes/homePage.routes.js");
+const homeController = require("./controllers/homePage.controller.js");
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,11 +20,11 @@ require("dotenv").config();
 
 // database connection
 
-app.get(
+app.post(
   "/home",
-  hashVerifier.base64Decoder,
-  hashVerifier.md5HashVerifier,
-  (req, res) => [res.status(200).json("hello")]
+  // hashVerifier.base64Decoder,
+  // hashVerifier.md5HashVerifier,
+  homeController.homePage
 );
 
 app.use(
