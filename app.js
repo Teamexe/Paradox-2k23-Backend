@@ -22,8 +22,8 @@ require("dotenv").config();
 
 app.post(
   "/home",
-  hashVerifier.base64Decoder,
-  hashVerifier.md5HashVerifier,
+  // hashVerifier.base64Decoder,
+  // hashVerifier.md5HashVerifier,
   homeController.homePage
 );
 

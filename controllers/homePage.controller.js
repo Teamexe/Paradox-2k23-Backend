@@ -10,6 +10,7 @@ var levelStartsAt = 1676010600000;
 var level2StartsAt = 1876010600000;
 var levelStartsInSeconds = levelStartsAt / 1000 - Date.now() / 1000;
 var isLA = Date.now() >= levelStartsAt;
+
 // dataFiller function
 
 // Home Route
