@@ -112,6 +112,7 @@ const homePage = async (req, res) => {
   const allBanners = await Banner.find();
 
   return await res.status(200).json({
+    success: true,
     message: "done",
     levelData: mData,
     BannerList: allBanners,
