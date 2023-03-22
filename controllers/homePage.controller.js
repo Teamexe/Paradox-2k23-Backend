@@ -111,12 +111,14 @@ const homePage = async (req, res) => {
   // banner data
   const allBanners = await Banner.find();
 
+  let data = {levelData: mData,
+    BannerList: allBanners,
+    leaderboardTop: leaderboardTop}
+
   return await res.status(200).json({
     success: true,
     message: "done",
-    levelData: mData,
-    BannerList: allBanners,
-    leaderboardTop: leaderboardTop,
+    data:data
   });
 };
 module.exports = { homePage };
