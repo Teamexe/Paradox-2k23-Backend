@@ -19,6 +19,9 @@ const level1Routes = require("./routes/play_level1.routes.js");
 // add question routes
 const addQuesRoutes = require("./utils/ques_collector_api.js");
 
+// leaderboard routes
+const leaderBoardRoutes = require("./routes/leaderboard.routes.js");
+
 const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
@@ -45,12 +48,16 @@ app.use(
 // collector api
 app.use("/addQues", addQuesRoutes);
 
+// Level 1 route
 app.use(
   "/play/level1",
   hashVerifier.base64Decoder,
   hashVerifier.md5HashVerifier,
   level1Routes
 );
+
+// Leaderboard route
+app.use("/leaderboard", leaderBoardRoutes);
 
 // app.post("/signup", authController.signup_post);
 // app.post("/login", authController.login_post);

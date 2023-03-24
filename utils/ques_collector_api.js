@@ -10,8 +10,8 @@ const addQues = async (req, res) => {
 router.get("/", addQues);
 router.post("/", async (req, res) => {
   try {
-    const { text, imageUrl } = await req.body;
-    console.log(req.body);
+    const { qno, imageUrl } = await req.body;
+    console.log(qno, imageUrl);
     res.send("submitted");
     // const newQuestion = new Question({ text, imageUrl });
     // await newQuestion.save();
