@@ -4,13 +4,7 @@ const QuestionSchema = new mongoose.Schema({
   level: Number,
   id: Number,
   answer: String,
-  images: [
-    {
-      type: String,
-      ref: "Ques",
-      default: [],
-    },
-  ],
+  image: String,
   location: String,
   hint: String,
   category: String,
