@@ -9,9 +9,10 @@ const ParadoxUserSchema = new mongoose.Schema({
   },
   image: String,
   reg_time: String,
+  score:Number,
   level: Number,
   attemps: Number,
-
+  currQues: Number,
   refCode: String,
   teamCode: String,
   teamName: String,

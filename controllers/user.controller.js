@@ -12,6 +12,8 @@ const CreateUser = (req, res) => {
     refCode: refCode,
     teamCode: teamCode,
     teamName: teamName,
+    currQues: 1,
+    score:0,
   });
   ParadoxUser.findOne({ uid: uid }, (error, user) => {
     if (error) {
