@@ -21,6 +21,11 @@ const addQuesRoutes = require("./utils/ques_collector_api.js");
 
 // leaderboard routes
 const leaderBoardRoutes = require("./routes/leaderboard.routes.js");
+// profile routes
+// let profileRoutes = require("./routes/profile.route.js");
+const { displayProfile } = require("./controllers/profile.controller");
+
+const { getPrize } = require("./controllers/prize.controller.js");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -62,6 +67,10 @@ app.use("/leaderboard", leaderBoardRoutes);
 // app.post("/signup", authController.signup_post);
 // app.post("/login", authController.login_post);
 app.post("/createUser", userController.CreateUser);
+
+app.use("/profile", displayProfile);
+
+app.use("/prizes", getPrize);
 
 mongoose
   .connect(

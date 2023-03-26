@@ -28,7 +28,6 @@ const checkQues = async (req, res) => {
           return await res.status(200).json({
             isAnswerCorrect: false,
             isLevelComplete: false,
-            nextQuestion: {},
           });
         }
       });
@@ -36,42 +35,6 @@ const checkQues = async (req, res) => {
   });
 };
 
-const cdheckAns = (req, res) => {
-  const { id, answer, uid } = req.body;
-
-  Question.findOne({ id: id }, async (error, ques) => {
-    if (error) {
-      console.log(error);
-    } else if (ques) {
-      if (answer.toLowerCase() === ques.answer.toLowerCase()) {
-        ParadoxUser.findOne({ uid: uid }, async (error, user) => {
-          if (error) {
-            console.log(error);
-          } else if (!user) {
-            return await res
-              .status(200)
-              .json({ message: "User not found", success: "false" });
-          } else if (user) {
-            console.log(user);
-            user.score = user.score + 20;
-            user.currQues = user.currQues + 1;
-            console.log(user);
-          }
-        });
-
-        return await res
-          .status(200)
-          .json({ message: "Answer matched", success: "true" });
-      } else {
-        return await res
-          .status(200)
-          .json({ message: "Answer not matched", success: "false" });
-      }
-    } else if (!ques) {
-      console.log("ques not found");
-    }
-  });
-};
 const checkAns = async (req, res) => {
   const { answer, uid } = req.body;
   ParadoxUser.findOne({ uid: uid }, async (error, user) => {

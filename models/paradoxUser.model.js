@@ -9,9 +9,9 @@ const ParadoxUserSchema = new mongoose.Schema({
   },
   image: String,
   reg_time: String,
-  score:Number,
+  score: Number,
   level: Number,
-  attemps: Number,
+  attempts: Number,
   currQues: Number,
   refCode: String,
   teamCode: String,
@@ -19,6 +19,9 @@ const ParadoxUserSchema = new mongoose.Schema({
   isSolo: Boolean,
   isLevelLocked: Boolean,
   nextQuestionNumber: Number,
+  roll: String,
+  coins: String,
+  rank: String,
 });
 
 module.exports = mongoose.model("ParadoxUser", ParadoxUserSchema);
