@@ -62,15 +62,35 @@ app.use(
 );
 
 // Leaderboard route
-app.use("/leaderboard", leaderBoardRoutes);
+app.use(
+  "/leaderboard",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  leaderBoardRoutes
+);
 
 // app.post("/signup", authController.signup_post);
 // app.post("/login", authController.login_post);
-app.post("/createUser", userController.CreateUser);
+app.post(
+  "/createUser",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  userController.CreateUser
+);
 
-app.use("/profile", displayProfile);
+app.use(
+  "/profile",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  displayProfile
+);
 
-app.use("/prizes", getPrize);
+app.use(
+  "/prizes",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  getPrize
+);
 
 mongoose
   .connect(
