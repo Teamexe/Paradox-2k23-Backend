@@ -10,10 +10,11 @@ const CreateUser = (req, res) => {
     email: email,
     roll: roll,
     refCode: refCode,
+    isInTeam: false,
     teamCode: teamCode,
     teamName: teamName,
     currQues: 1,
-    score:0,
+    score: 0,
   });
   ParadoxUser.findOne({ uid: uid }, (error, user) => {
     if (error) {

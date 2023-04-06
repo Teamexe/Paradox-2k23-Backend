@@ -20,9 +20,13 @@ const checkQues = async (req, res) => {
       Question.findOne({ id: user.currQues }, async (error, ques) => {
         if (ques) {
           return await res.status(200).json({
-            isAnswerCorrect: false,
-            isLevelComplete: false,
-            nextQuestion: ques,
+            message: "Question found",
+            success: true,
+            data: {
+              isAnswerCorrect: false,
+              isLevelComplete: false,
+              nextQuestion: ques,
+            },
           });
         } else if (!ques) {
           return await res.status(200).json({

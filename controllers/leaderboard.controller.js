@@ -23,7 +23,13 @@ const displayLeaderBoard = async (req, res) => {
         // display_picture:
       };
       // Return the position of the user in the leaderboard
-      res.status(200).send({ myRank, leaderboard });
+      res
+        .status(200)
+        .send({
+          success: true,
+          message: "Leaderboard fetched",
+          data: { myRank, leaderboard },
+        });
     }
   } catch (err) {
     console.error(err);

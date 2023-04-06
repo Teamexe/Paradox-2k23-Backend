@@ -10,6 +10,7 @@ const ParadoxUserSchema = new mongoose.Schema({
   image: String,
   reg_time: String,
   score: Number,
+  isInTeam: Boolean,
   level: Number,
   attempts: Number,
   currQues: Number,
