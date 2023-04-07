@@ -6,7 +6,9 @@ const TeamSchema = new mongoose.Schema({
   player1: String,
   player2: String,
   controlOfficerId: String,
+  currQues: String,
   fieldOfficerId: String,
+  score: Number,
 });
 
 module.exports = mongoose.model("Team", TeamSchema);

@@ -17,13 +17,11 @@ const joinTeam = async (req, res) => {
         .json({ message: "user does not exist", success: false, data: " " });
     } else {
       if (user.isInTeam === true) {
-        return res
-          .status(200)
-          .json({
-            message: "User alreday in a team",
-            success: false,
-            data: " ",
-          });
+        return res.status(200).json({
+          message: "User alreday in a team",
+          success: false,
+          data: " ",
+        });
       } else {
         Team.findOne({ teamCode: teamId }, async (error, team) => {
           if (error) {
@@ -39,6 +37,7 @@ const joinTeam = async (req, res) => {
           } else if (team) {
             user.isInTeam = true;
             team.fieldOfficerId = uid;
+            user.role = "FO";
             const controlOfficerId = team.controlOfficerId;
             fieldOfficerId = team.fieldOfficerId;
             const ControlOfficer = await ParadoxUser.findOne({
@@ -81,6 +80,7 @@ const createTeam = async (req, res) => {
     teamName: teamName,
     teamCode: Math.floor(Math.random() * 9000) + 1000,
     controlOfficerId: uid,
+    currQues: 1,
   });
 
   ParadoxUser.findOne({ uid: uid }, async (error, user) => {
@@ -103,6 +103,7 @@ const createTeam = async (req, res) => {
         });
       } else if (user.isInTeam === false) {
         user.isInTeam = true;
+        user.role = "CO";
         user.save();
         newTeam
           .save()

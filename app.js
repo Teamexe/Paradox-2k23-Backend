@@ -15,7 +15,7 @@ const homeController = require("./controllers/homePage.controller.js");
 // level1 Routes
 const { checkQues } = require("./controllers/play_level1.controller.js");
 const level1Routes = require("./routes/play_level1.routes.js");
-// const level2Routes = require("./routes/play_level2.routes.js");
+const level2Routes = require("./routes/play_level2.routes.js");
 
 // add question routes
 const addQuesRoutes = require("./utils/ques_collector_api.js");
@@ -30,6 +30,7 @@ const { getPrize } = require("./controllers/prize.controller.js");
 
 // const teamRoutes = require("./routes/team.routes.js");
 const { joinTeam, createTeam } = require("./controllers/team.controller.js");
+const { getQues, cAns } = require("./controllers/play_level2.controller.js");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -109,7 +110,7 @@ app.post(
 );
 
 // Level 2 Team
-// app.post("play/level2/", level2Routes);
+app.use("/play/level2/", level2Routes);
 
 mongoose
   .connect(

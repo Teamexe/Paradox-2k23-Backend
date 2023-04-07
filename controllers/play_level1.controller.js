@@ -59,12 +59,25 @@ const checkAns = async (req, res) => {
                 console.log(error);
               } else if (Cques) {
                 return await res.status(200).json({
-                  isAnswerCorrect: true,
-                  isLevelComplete: false,
-                  nextQuestion: Cques,
+                  message: "Answer is correct",
+                  success: true,
+                  data: {
+                    isAnswerCorrect: true,
+                    isLevelComplete: false,
+                    nextQuestion: Cques,
+                  },
                 });
               } else {
-                console.log("current ques not found");
+                // TODO: end the level if question are finished
+                return await res.status(200).json({
+                  message: "Question not found",
+                  success: true,
+                  data: {
+                    isAnswerCorrect: true,
+                    isLevelComplete: true,
+                    nextQuestion: " ",
+                  },
+                });
               }
             });
           } else {

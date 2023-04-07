@@ -1,12 +1,14 @@
 const { Router } = require("express");
 const {
-  checkQues,
-  checkAns,
+  getQues,
+  cAns,
+  addQues,
 } = require("../controllers/play_level2.controller");
 
 const router = Router();
 
-router.post("/ques", checkQues);
-router.post("/answer", checkAns);
+router.post("/ques", getQues);
+router.post("/addQues", addQues);
+router.post("/answer", cAns);
 
 module.exports = router;
