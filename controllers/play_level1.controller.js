@@ -63,7 +63,7 @@ const checkAns = async (req, res) => {
             // TODO: make level complete functionality proper
             user.score = user.score + 20;
             user.currQues = user.currQues + 1;
-            user.save();
+            await user.save();
             Question.findOne({ id: user.currQues }, async (error, Cques) => {
               if (error) {
                 console.log(error);
