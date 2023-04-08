@@ -101,7 +101,15 @@ const checkAns = async (req, res) => {
             });
           }
         } else {
-          console.log("ques not found");
+          return res.status(200).json({
+            message: "Level Finished",
+            success: true,
+            data: {
+              isAnswerCorrect: false,
+              isLevelComplete: true,
+              nextQuestion: " ",
+            },
+          });
         }
       });
     } else if (!user) {

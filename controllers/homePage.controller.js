@@ -28,7 +28,9 @@ const homePage = async (req, res) => {
     const id = 1;
     await Level.findOne({ id: id }, (error, level) => {
       if (error) {
-        res.status(200).json({ message: error.message, success: "false" });
+        res
+          .status(200)
+          .json({ message: error.message, success: "false", data: "" });
       }
       if (level) {
         mData.levelNo = 1;
@@ -111,14 +113,16 @@ const homePage = async (req, res) => {
   // banner data
   const allBanners = await Banner.find();
 
-  let data = {levelData: mData,
+  let data = {
+    levelData: mData,
     BannerList: allBanners,
-    leaderboardTop: leaderboardTop}
+    leaderboardTop: leaderboardTop,
+  };
 
   return await res.status(200).json({
     success: true,
     message: "done",
-    data:data
+    data: data,
   });
 };
 module.exports = { homePage };

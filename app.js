@@ -20,6 +20,9 @@ const level2Routes = require("./routes/play_level2.routes.js");
 // add question routes
 const addQuesRoutes = require("./utils/ques_collector_api.js");
 
+// rules controller
+const { getRules } = require("./controllers/rules.controller.js");
+
 // leaderboard routes
 const leaderBoardRoutes = require("./routes/leaderboard.routes.js");
 // profile routes
@@ -57,6 +60,13 @@ app.use(
 
 // collector api
 app.use("/addQues", addQuesRoutes);
+// rules api
+app.use(
+  "/rules",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  getRules
+);
 
 // Level 1 route
 app.use(
