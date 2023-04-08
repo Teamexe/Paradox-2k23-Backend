@@ -30,8 +30,12 @@ const checkQues = async (req, res) => {
           });
         } else if (!ques) {
           return await res.status(200).json({
-            isAnswerCorrect: false,
-            isLevelComplete: false,
+            message: "Question not found",
+            success: false,
+            data: {
+              isAnswerCorrect: false,
+              isLevelComplete: false,
+            },
           });
         }
       });
