@@ -28,7 +28,7 @@ const checkQues = async (req, res) => {
               nextQuestion: {
                 questionNo: ques.id,
                 _id: ques._id,
-                question: ques.location,
+                question: ques.question,
                 image: ques.image,
               },
             },
