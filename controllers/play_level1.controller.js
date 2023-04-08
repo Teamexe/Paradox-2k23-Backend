@@ -73,7 +73,12 @@ const checkAns = async (req, res) => {
                   data: {
                     isAnswerCorrect: true,
                     isLevelComplete: false,
-                    nextQuestion: Cques,
+                    nextQuestion: {
+                      questionNo: ques.id,
+                      _id: ques._id,
+                      question: ques.question,
+                      image: ques.image,
+                    },
                   },
                 });
               } else {
