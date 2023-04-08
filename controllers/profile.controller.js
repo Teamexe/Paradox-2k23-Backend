@@ -3,7 +3,7 @@ const ParadoxUser = require("../models/paradoxUser.model");
 
 const displayProfile = (req, res) => {
   const { uid } = req.body;
-  ParadoxUser.findOne({ id: uid }, async (error, user) => {
+  ParadoxUser.findOne({ uid: uid }, async (error, user) => {
     if (error) {
       await res.status(200).send({ error: error });
     } else if (!user) {
@@ -16,7 +16,7 @@ const displayProfile = (req, res) => {
         roll: user.roll,
         ref_code: user.refCode,
         team_code: user.teamCode,
-
+        level: user.level,
         teamName: user.teamName,
         coins: user.coins,
         level: user.level,
