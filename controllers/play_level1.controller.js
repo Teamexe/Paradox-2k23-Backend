@@ -25,7 +25,12 @@ const checkQues = async (req, res) => {
             data: {
               isAnswerCorrect: false,
               isLevelComplete: false,
-              nextQuestion: ques,
+              nextQuestion: {
+                questionNo: ques.id,
+                _id: ques._id,
+                question: ques.location,
+                image: ques.image,
+              },
             },
           });
         } else if (!ques) {
