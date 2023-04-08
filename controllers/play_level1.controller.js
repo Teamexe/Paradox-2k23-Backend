@@ -96,7 +96,12 @@ const checkAns = async (req, res) => {
               data: {
                 isAnswerCorrect: false,
                 isLevelComplete: false,
-                nextQuestion: ques,
+                nextQuestion: {
+                  questionNo: ques.id,
+                  _id: ques._id,
+                  question: ques.question,
+                  image: ques.image,
+                },
               },
             });
           }
