@@ -22,7 +22,7 @@ const md5HashVerifier = function (req, res, next) {
   let sub = (timestamp_n - timestamp) / 1000;
   if (sub > 60) {
     console.log("expired");
-    return res.status(401).json({ message: "Expired" });
+    return res.status(200).json({ success: false, message: "Expired" });
   } else {
   }
   let myhash = crypto.createHash("md5").update(combinedString).digest("hex");
