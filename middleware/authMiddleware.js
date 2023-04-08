@@ -20,7 +20,9 @@ const md5HashVerifier = function (req, res, next) {
   console.log(timestamp_n);
   console.log(timestamp);
   let sub = (timestamp_n - timestamp) / 1000;
-  if (sub > 60) {
+  if (sub > 100) {
+    console.log(hash, salt, input, timestamp);
+    console.log(sub);
     console.log("expired");
     return res.status(200).json({ success: false, message: "Expired" });
   } else {

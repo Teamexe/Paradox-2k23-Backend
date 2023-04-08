@@ -63,7 +63,8 @@ app.use("/addQues", addQuesRoutes);
 // rules api
 app.use(
   "/rules",
-
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
   getRules
 );
 
