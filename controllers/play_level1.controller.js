@@ -91,9 +91,13 @@ const checkAns = async (req, res) => {
             });
           } else {
             return res.status(200).json({
-              isAnswerCorrect: false,
-              isLevelComplete: false,
-              nextQuestion: ques,
+              message: "Answer incorrect",
+              success: true,
+              data: {
+                isAnswerCorrect: false,
+                isLevelComplete: false,
+                nextQuestion: ques,
+              },
             });
           }
         } else {
