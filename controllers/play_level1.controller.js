@@ -75,10 +75,10 @@ const checkAns = async (req, res) => {
                     isAnswerCorrect: true,
                     isLevelComplete: false,
                     nextQuestion: {
-                      questionNo: ques.id,
-                      _id: ques._id,
-                      question: ques.question,
-                      image: ques.image,
+                      questionNo: Cques.id,
+                      _id: Cques._id,
+                      question: Cques.question,
+                      image: Cques.image,
                     },
                   },
                 });
