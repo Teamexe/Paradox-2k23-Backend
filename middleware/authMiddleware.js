@@ -19,8 +19,8 @@ const md5HashVerifier = function (req, res, next) {
   let timestamp_n = Date.now();
   console.log(timestamp_n);
   console.log(timestamp);
-  let sub = (timestamp_n - timestamp) / 1000;
-  if (sub > 100) {
+  let sub = (timestamp_n - timestamp) / 10000;
+  if (sub > 15) {
     console.log(hash, salt, input, timestamp);
     console.log(sub);
     console.log("expired");
@@ -33,7 +33,9 @@ const md5HashVerifier = function (req, res, next) {
     req.body = input;
     return next();
   } else {
-    return next(res.status(401).json({ message: "Auth failed" }));
+    return next(
+      res.status(401).json({ success: false, message: "Auth failed" })
+    );
   }
 };
 
