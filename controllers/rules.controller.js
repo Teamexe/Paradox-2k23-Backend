@@ -4,7 +4,14 @@ const getRules = (req, res) => {
     success: true,
     data: {
       header: "INSTRUCTIONS",
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      body: `<h2>Treasure hunt: why it’s good for children<a id="treasure-hunt-why-its-good-for-children-nav-title" class="inpage-link-target"></a></h2>
+      <p>A treasure hunt is all about looking for something and then finding it. An outdoor treasure hunt game encourages children to be active and to explore.</p>
+      <p>A treasure hunt is <strong>a fun and satisfying experience</strong> for children of all ages.</p>
+      <h2>What you need for a treasure hunt<a id="what-you-need-for-a-treasure-hunt-nav-title" class="inpage-link-target"></a></h2>
+      <h2>What you need for a treasure hunt<a id="what-you-need-for-a-treasure-hunt-nav-title" class="inpage-link-target"></a></h2>
+      <p>You can do a treasure hunt anywhere, but <strong>an outdoor space with lots of interesting things</strong> to look at and places to hide things is more fun to explore.</p>
+      <p>Here’s what you need for a treasure hunt:</p>
+      <ul><li>paper and pencils to prepare the clues in advance</li><li>a ‘treasure’ to hide</li><li>someone to supervise your child while you hide the treasure and clues – for example, someone to take your child for a short walk or play with your child in another area.</li></ul>`,
     },
   });
 };
