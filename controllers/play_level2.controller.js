@@ -1,7 +1,7 @@
 const ParadoxUser = require("../models/paradoxUser.model");
 const QuestionL2CO = require("../models/questionL2CO.model");
 const QuestionL2FO = require("../models/questionL2FO.model");
-const Team = require("../models/team.model");
+const TeamModel = require("../models/team.model");
 
 const addQues = (req, res) => {
   const { qid } = req.body;
@@ -11,7 +11,7 @@ const addQues = (req, res) => {
     image: "thstrh",
     isAnswerRequired: true,
   });
-  QuestionL2CO.findOne({ id: qid }, (error, ques) => {
+  QuestionL2CO.findOne({ id: qid }, async (error, ques) => {
     if (error) {
       return res
         .status(200)
@@ -19,7 +19,7 @@ const addQues = (req, res) => {
     } else if (ques) {
       return res.status(200).json({ message: "ques already exists" });
     } else {
-      newQues.save();
+      await newQues.save();
       return res.status(200).json({ message: "lksfl" });
     }
   });
@@ -29,6 +29,7 @@ const getQues = (req, res) => {
   const { uid } = req.body;
 
   ParadoxUser.findOne({ uid: uid }, async (error, user) => {
+    const Team = await TeamModel.findOne({ teamCode: user.teamCode });
     if (error) {
       return res
         .status(200)
@@ -39,8 +40,10 @@ const getQues = (req, res) => {
         .status(200)
         .json({ message: "user does not exist", success: "false", data: " " });
     } else {
+      console.log(user.role);
       if (user.role === "CO") {
         QuestionL2CO.findOne({ id: Team.currQues }, async (error, ques) => {
+          console.log(ques.isAnswerRequired);
           if (error) {
             return await res.status(200).json({
               message: error,
@@ -52,7 +55,19 @@ const getQues = (req, res) => {
               data: {
                 isAnswerCorrect: false,
                 isLevelComplete: false,
-                nextQuestion: ques,
+                nextQuestion: {
+                  questionNo: ques.id,
+                  _id: ques._id,
+                  question: ques.question,
+                  image: ques.image,
+                  isAnswerRequired: ques.isAnswerRequired,
+                },
+                officerType: {
+                  name: user.name,
+                  photoUrl: user.image,
+                  position: "CONTROL",
+                  uid: user.uid,
+                },
               },
             });
           } else if (!ques) {
@@ -70,17 +85,32 @@ const getQues = (req, res) => {
               message: error,
             });
           } else if (ques) {
+            console.log(ques.question);
+            console.log(ques.id);
             return await res.status(200).json({
               message: "Question found",
               success: true,
               data: {
                 isAnswerCorrect: false,
                 isLevelComplete: false,
-                nextQuestion: ques,
+                nextQuestion: {
+                  questionNo: ques.id,
+                  _id: ques._id,
+                  question: ques.question,
+                  image: ques.image,
+                  isAnswerRequired: ques.isAnswerRequired,
+                },
+                officerType: {
+                  name: user.name,
+                  photoUrl: user.image,
+                  position: "FIELD",
+                  uid: user.uid,
+                },
               },
             });
           } else if (!ques) {
             return await res.status(200).json({
+              success: false,
               message: "Question not found",
               isAnswerCorrect: false,
               isLevelComplete: false,
@@ -96,6 +126,7 @@ const getQues = (req, res) => {
 const cAns = (req, res) => {
   const { answer, uid } = req.body;
   ParadoxUser.findOne({ uid: uid }, async (error, user) => {
+    const team = await TeamModel.findOne({ teamCode: user.teamCode });
     if (error) {
       console.log(error);
     } else if (!user) {
@@ -105,8 +136,6 @@ const cAns = (req, res) => {
         data: " ",
       });
     } else if (user) {
-      const team = await Team.findOne({ teamCode: user.teamCode });
-      console.log(team);
       if (user.role === "CO") {
         QuestionL2CO.findOne({ id: team.currQues }, async (error, ques) => {
           if (error) {
@@ -125,9 +154,9 @@ const cAns = (req, res) => {
             if (ques.answer.toLowerCase() === answer.toLowerCase()) {
               team.score = team.score + 20;
               team.currQues = team.currQues + 1;
-              team.save();
+              await team.save();
 
-              const quesC = await QuestionL2CO.findOne({ id: qid });
+              const quesC = await QuestionL2CO.findOne({ id: team.currQues });
               if (quesC) {
                 return await res.status(200).json({
                   message: "Answer is correct",
@@ -135,7 +164,12 @@ const cAns = (req, res) => {
                   data: {
                     isAnswerCorrect: true,
                     isLevelComplete: false,
-                    nextQuestion: quesC,
+                    nextQuestion: {
+                      questionNo: quesC.id,
+                      _id: quesC._id,
+                      question: quesC.question,
+                      image: quesC.image,
+                    },
                   },
                 });
               } else if (!quesC) {
@@ -149,6 +183,21 @@ const cAns = (req, res) => {
                   },
                 });
               }
+            } else {
+              return await res.status(200).json({
+                message: "Answer is Incorrect",
+                success: false,
+                data: {
+                  isAnswerCorrect: false,
+                  isLevelComplete: false,
+                  nextQuestion: {
+                    questionNo: ques.id,
+                    _id: ques._id,
+                    question: ques.question,
+                    image: ques.image,
+                  },
+                },
+              });
             }
           }
         });
@@ -170,9 +219,9 @@ const cAns = (req, res) => {
             if (ques.answer.toLowerCase() === answer.toLowerCase()) {
               team.score = team.score + 20;
               team.currQues = team.currQues + 1;
-              team.save();
+              await team.save();
 
-              const quesF = await QuestionL2FO.findOne({ id: qid });
+              const quesF = await QuestionL2FO.findOne({ id: team.currQues });
               if (quesF) {
                 return await res.status(200).json({
                   message: "Answer is correct",
@@ -180,7 +229,12 @@ const cAns = (req, res) => {
                   data: {
                     isAnswerCorrect: true,
                     isLevelComplete: false,
-                    nextQuestion: quesF,
+                    nextQuestion: {
+                      questionNo: quesF.id,
+                      _id: quesF._id,
+                      question: quesF.question,
+                      image: quesF.image,
+                    },
                   },
                 });
               } else if (!quesF) {
@@ -194,8 +248,32 @@ const cAns = (req, res) => {
                   },
                 });
               }
+            } else {
+              return await res.status(200).json({
+                message: "Answer is incorrect",
+                success: true,
+                data: {
+                  isAnswerCorrect: false,
+                  isLevelComplete: false,
+                  nextQuestion: {
+                    questionNo: ques.id,
+                    _id: ques._id,
+                    question: ques.question,
+                    image: ques.image,
+                  },
+                },
+              });
             }
           }
+        });
+      } else {
+        return await res.status(200).json({
+          message: "User has no role",
+          success: false,
+          data: {
+            isAnswerCorrect: false,
+            isLevelComplete: false,
+          },
         });
       }
     }

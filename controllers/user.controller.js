@@ -2,7 +2,16 @@
 const ParadoxUser = require("../models/paradoxUser.model");
 
 const CreateUser = (req, res) => {
-  const { uid, name, email, roll, refCode, teamCode, teamName } = req.body;
+  const {
+    uid,
+    name,
+    email,
+    roll,
+    refCode,
+    teamCode,
+    teamName,
+    displayPicture,
+  } = req.body;
 
   const newUser = new ParadoxUser({
     uid: uid,
@@ -14,7 +23,9 @@ const CreateUser = (req, res) => {
     teamCode: teamCode,
     teamName: teamName,
     currQues: 1,
+    image: displayPicture,
     score: 0,
+    level: 1,
   });
   ParadoxUser.findOne({ uid: uid }, (error, user) => {
     if (error) {

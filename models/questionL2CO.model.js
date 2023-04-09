@@ -5,10 +5,10 @@ const QuestionL2COSchema = new mongoose.Schema({
   id: Number,
   answer: String,
   image: String,
-  location: String,
+  question: String,
   hint: String,
   category: String,
-  isAnswerRequried: Boolean,
+  isAnswerRequired: Boolean,
 });
 
 module.exports = mongoose.model("QuestionL2CO", QuestionL2COSchema);

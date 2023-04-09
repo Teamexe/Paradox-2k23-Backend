@@ -35,11 +35,11 @@ const checkQues = async (req, res) => {
           });
         } else if (!ques) {
           return await res.status(200).json({
-            message: "Question not found",
-            success: false,
+            message: "Level Finished",
+            success: true,
             data: {
               isAnswerCorrect: false,
-              isLevelComplete: false,
+              isLevelComplete: true,
             },
           });
         }
@@ -90,7 +90,6 @@ const checkAns = async (req, res) => {
                   data: {
                     isAnswerCorrect: true,
                     isLevelComplete: true,
-                    nextQuestion: " ",
                   },
                 });
               }

@@ -32,7 +32,11 @@ const { displayProfile } = require("./controllers/profile.controller");
 const { getPrize } = require("./controllers/prize.controller.js");
 
 // const teamRoutes = require("./routes/team.routes.js");
-const { joinTeam, createTeam } = require("./controllers/team.controller.js");
+const {
+  joinTeam,
+  createTeam,
+  getTeamDetails,
+} = require("./controllers/team.controller.js");
 const { getQues, cAns } = require("./controllers/play_level2.controller.js");
 
 const app = express();
@@ -118,9 +122,20 @@ app.post(
   hashVerifier.md5HashVerifier,
   createTeam
 );
+app.post(
+  "/team/details",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  getTeamDetails
+);
 
 // Level 2 Team
-app.use("/play/level2/", level2Routes);
+app.use(
+  "/play/level2/",
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
+  level2Routes
+);
 
 mongoose
   .connect(

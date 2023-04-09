@@ -20,7 +20,7 @@ const displayProfile = (req, res) => {
         teamName: user.teamName,
         coins: user.coins,
         level: user.level,
-        attempts: user.attempts,
+        attempts: user.currQues - 1,
         score: user.score,
         rank: user.rank,
       };
