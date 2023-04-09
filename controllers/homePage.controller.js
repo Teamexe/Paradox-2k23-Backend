@@ -1,17 +1,11 @@
 const Level = require("../models/level.model");
 const Banner = require("../models/banner.model");
 const ParadoxUser = require("../models/paradoxUser.model");
-var mData = {
-  levelNo: -1,
-  isLevelActive: false,
-  levelStartsInSeconds: -1,
-  levelStartsAt: -1,
-};
 
-var level1StartsAt = 1680975780000;
-var level2StartsAt = 1681039800000;
-var level1EndsAt = 1680977735000;
-var level2EndsAt = 1681041600000;
+var level1StartsAt = 1681042200000;
+var level2StartsAt = 1681043400000;
+var level1EndsAt = 1681042800000;
+var level2EndsAt = 1681044300000;
 // var levelStartsInSeconds = level1StartsAt / 1000 - Date.now() / 1000;
 var isLA = Date.now() >= level1StartsAt;
 var isLA2 = Date.now() >= level2StartsAt;
