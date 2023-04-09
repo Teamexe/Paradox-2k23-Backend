@@ -9,9 +9,9 @@ var mData = {
 };
 
 var level1StartsAt = 1680975780000;
-var level2StartsAt = 1680985800000;
+var level2StartsAt = 1681039800000;
 var level1EndsAt = 1680977735000;
-var level2EndsAt = 1680990655000;
+var level2EndsAt = 1681041600000;
 // var levelStartsInSeconds = level1StartsAt / 1000 - Date.now() / 1000;
 var isLA = Date.now() >= level1StartsAt;
 var isLA2 = Date.now() >= level2StartsAt;
