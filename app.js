@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const port = process.env.PORT || 8080;
 const User = require("./models/User.js");
+
+const Question = require("./models/question.model.js");
 // const authController = require("./controllers/auth.controller.js");
 const userController = require("./controllers/user.controller.js");
 const hashVerifier = require("./middleware/authMiddleware.js");
@@ -42,6 +44,7 @@ const { getQues, cAns } = require("./controllers/play_level2.controller.js");
 const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
+app.use(express.static("public"));
 require("dotenv").config();
 
 // middleware
@@ -63,6 +66,7 @@ app.use(
 );
 
 // collector api
+
 app.use("/addQues", addQuesRoutes);
 // rules api
 app.use(

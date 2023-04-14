@@ -7,6 +7,7 @@ const ParadoxUserSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  unlockedHints: [String],
   role: String,
   image: String,
   reg_time: String,

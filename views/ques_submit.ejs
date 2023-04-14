@@ -5,12 +5,15 @@
   </head>
   <body>
     <h1>Submit a Question</h1>
-    <form action="/addQues" method="POST">
+    <form action="/addQues" method="post">
       <label for="question">Question:</label><br />
-      <input type="text" id="question" name="qno" /><br />
-      <label for="imageUrl">Image URL:</label><br />
-      <input type="text" id="imageUrl" name="imageUrl" /><br /><br />
-      <input type="submit" value="Submit" />
+      <input type="text" id="question" name="question" /><br />
+      <label for="questionNo">questionNo:</label><br />
+      <input type="text" id="questionNo" name="questionNo" /><br />
+      <label for="image">Image URL:</label><br />
+      <input type="text" id="image" name="image" /><br /><br />
+      <button type="submit" name="button">Submit</button>
+      <!-- <input type="submit" value="Submit" /> -->
     </form>
   </body>
 </html>

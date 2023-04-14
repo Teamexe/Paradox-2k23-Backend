@@ -3,9 +3,9 @@ const Question = require("../models/question.model");
 
 //  function to check the current ques using user id "uid"
 
-var level1StartsAt = 1681042200000;
+var level1StartsAt = 1681418520000;
 var level2StartsAt = 1681043400000;
-var level1EndsAt = 1681042800000;
+var level1EndsAt = 1681422120000;
 var level2EndsAt = 1681044300000;
 
 const checkQues = async (req, res) => {
@@ -29,20 +29,42 @@ const checkQues = async (req, res) => {
       } else {
         Question.findOne({ id: user.currQues }, async (error, ques) => {
           if (ques) {
-            return await res.status(200).json({
-              message: "Question found",
-              success: true,
-              data: {
-                isAnswerCorrect: false,
-                isLevelComplete: false,
-                nextQuestion: {
-                  questionNo: ques.id,
-                  _id: ques._id,
-                  question: ques.question,
-                  image: ques.image,
+            // unlocked hint array me user id ka curr ques hai ki ni
+            if (user.unlockedHints.includes(user.currQues)) {
+              console.log("hello");
+              return await res.status(200).json({
+                message: "Question found",
+                success: true,
+                data: {
+                  isAnswerCorrect: false,
+                  isLevelComplete: false,
+                  nextQuestion: {
+                    questionNo: ques.id,
+                    _id: ques._id,
+                    question: ques.question,
+                    image: ques.image,
+                    hint: ques.hint,
+                    isHintAvailable: ques.isHintAvailable,
+                  },
                 },
-              },
-            });
+              });
+            } else {
+              return await res.status(200).json({
+                message: "Question found",
+                success: true,
+                data: {
+                  isAnswerCorrect: false,
+                  isLevelComplete: false,
+                  nextQuestion: {
+                    questionNo: ques.id,
+                    _id: ques._id,
+                    question: ques.question,
+                    image: ques.image,
+                    isHintAvailable: ques.isHintAvailable,
+                  },
+                },
+              });
+            }
           } else if (!ques) {
             return await res.status(200).json({
               message: "Level Finished",
@@ -98,6 +120,7 @@ const checkAns = async (req, res) => {
                         _id: Cques._id,
                         question: Cques.question,
                         image: Cques.image,
+                        isHintAvailable: Cques.isHintAvailable,
                       },
                     },
                   });
@@ -125,6 +148,7 @@ const checkAns = async (req, res) => {
                     _id: ques._id,
                     question: ques.question,
                     image: ques.image,
+                    isHintAvailable: ques.isHintAvailable,
                   },
                 },
               });

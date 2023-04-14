@@ -7,6 +7,7 @@ const QuestionSchema = new mongoose.Schema({
   image: String,
   question: String,
   hint: String,
+  isHintAvailable: Boolean,
   category: String,
 });
 

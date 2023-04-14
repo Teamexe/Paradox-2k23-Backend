@@ -37,37 +37,47 @@ const displayLeaderBoard = async (req, res) => {
   }
 };
 const displayLevel2LeaderBoard = async (req, res) => {
-  const { teamCode } = req.body;
+  const { uid } = req.body;
 
   const leaderboard = await teamModel.find().sort({ score: -1 }).exec();
-  const team = await teamModel.findOne({ teamCode: teamCode });
-
-  if (!team) {
+  const user = await ParadoxUser.findOne({ uid: uid });
+  if (!user) {
     return await res.status(200).json({
-      message: "Team not Found",
+      message: "user not found",
       success: false,
     });
-  } else if (team) {
-    const teamPlace = await teamModel
-      .find({ score: { $gte: team.score } })
-      .sort({ score: -1 })
-      .exec();
-    const teamPosition = teamPlace.length;
-    return await res.status(200).json({
-      message: "Leaderboard Loaded",
-      success: true,
-      data: {
-        myRank: {
-          team_id: team._id,
-          team_name: team.teamName,
-          rank: teamPosition,
-          score: team.score,
-          display_picture:
-            "https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/1500922890-great-dane.jpg?crop=1.0xw:1xh;center,top&resize=980:*",
-        },
-        leaderboard: leaderboard,
-      },
-    });
+  } else {
+    if (user.teamCode) {
+      const team = await teamModel.findOne({ teamCode: user.teamCode });
+
+      if (!team) {
+        return await res.status(200).json({
+          message: "Team not Found",
+          success: false,
+        });
+      } else if (team) {
+        const teamPlace = await teamModel
+          .find({ score: { $gte: team.score } })
+          .sort({ score: -1 })
+          .exec();
+        const teamPosition = teamPlace.length;
+        return await res.status(200).json({
+          message: "Leaderboard Loaded",
+          success: true,
+          data: {
+            myRank: {
+              user_id: team._id,
+              user_name: team.teamName,
+              rank: teamPosition,
+              score: team.score,
+              display_picture:
+                "https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/1500922890-great-dane.jpg?crop=1.0xw:1xh;center,top&resize=980:*",
+            },
+            leaderboard: leaderboard,
+          },
+        });
+      }
+    }
   }
 };
 
