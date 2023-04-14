@@ -4,8 +4,8 @@ const Question = require("../models/question.model");
 //  function to check the current ques using user id "uid"
 
 var level1StartsAt = 1681533000000;
-var level2StartsAt = 1681626599000;
-var level1EndsAt = 1681583399000;
+var level2StartsAt = 1681626600000;
+var level1EndsAt = 1681583400000;
 var level2EndsAt = 1681655400000;
 
 const checkQues = async (req, res) => {
@@ -100,7 +100,10 @@ const checkAns = async (req, res) => {
           if (error) {
             console.log(error);
           } else if (ques) {
-            if (ques.answer.toLowerCase() === answer.toLowerCase()) {
+            if (
+              ques.answer.toLowerCase().replace(" ", "") ===
+              answer.toLowerCase()
+            ) {
               // TODO: make level complete functionality proper
               user.score = user.score + 20;
               user.currQues = user.currQues + 1;

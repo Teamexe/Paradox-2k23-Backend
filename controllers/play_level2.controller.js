@@ -3,9 +3,9 @@ const QuestionL2CO = require("../models/questionL2CO.model");
 const QuestionL2FO = require("../models/questionL2FO.model");
 const TeamModel = require("../models/team.model");
 
-var level1StartsAt = 1681041900000;
-var level2StartsAt = 1681626599000;
-var level1EndsAt = 1681042500000;
+var level1StartsAt = 1681533000000;
+var level2StartsAt = 1681626600000;
+var level1EndsAt = 1681583400000;
 var level2EndsAt = 1681655400000;
 
 const addQues = (req, res) => {
@@ -170,7 +170,10 @@ const cAns = (req, res) => {
                 data: " ",
               });
             } else {
-              if (ques.answer.toLowerCase() === answer.toLowerCase()) {
+              if (
+                ques.answer.toLowerCase().replace(" ", "") ===
+                answer.toLowerCase()
+              ) {
                 team.score = team.score + 20;
                 team.currQues = team.currQues + 1;
                 await team.save();
