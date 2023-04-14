@@ -80,6 +80,19 @@ const displayLevel2LeaderBoard = async (req, res) => {
           },
         });
       }
+    } else {
+      // const teamPlace = await teamModel
+      //   .find({ score: { $gte: team.score } })
+      //   .sort({ score: -1 })
+      //   .exec();
+      // const teamPosition = teamPlace.length;
+      return await res.status(200).json({
+        message: "Leaderboard Loaded",
+        success: true,
+        data: {
+          leaderboard: leaderboard,
+        },
+      });
     }
   }
 };
