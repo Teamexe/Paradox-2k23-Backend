@@ -52,8 +52,11 @@ const displayLevel2LeaderBoard = async (req, res) => {
 
       if (!team) {
         return await res.status(200).json({
-          message: "Team not Found",
-          success: false,
+          message: "Leaderboard Loaded",
+          success: true,
+          data: {
+            leaderboard: leaderboard,
+          },
         });
       } else if (team) {
         const teamPlace = await teamModel

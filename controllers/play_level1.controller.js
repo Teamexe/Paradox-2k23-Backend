@@ -3,10 +3,10 @@ const Question = require("../models/question.model");
 
 //  function to check the current ques using user id "uid"
 
-var level1StartsAt = 1681418520000;
-var level2StartsAt = 1681043400000;
-var level1EndsAt = 1681422120000;
-var level2EndsAt = 1681044300000;
+var level1StartsAt = 1681533000000;
+var level2StartsAt = 1681626599000;
+var level1EndsAt = 1681583399000;
+var level2EndsAt = 1681655400000;
 
 const checkQues = async (req, res) => {
   var currTime = Date.now();

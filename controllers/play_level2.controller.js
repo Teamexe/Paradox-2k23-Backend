@@ -4,9 +4,9 @@ const QuestionL2FO = require("../models/questionL2FO.model");
 const TeamModel = require("../models/team.model");
 
 var level1StartsAt = 1681041900000;
-var level2StartsAt = 1681043400000;
+var level2StartsAt = 1681626599000;
 var level1EndsAt = 1681042500000;
-var level2EndsAt = 1681044300000;
+var level2EndsAt = 1681655400000;
 
 const addQues = (req, res) => {
   const { qid } = req.body;
