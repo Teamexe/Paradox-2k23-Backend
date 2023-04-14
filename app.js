@@ -40,6 +40,7 @@ const {
   getTeamDetails,
 } = require("./controllers/team.controller.js");
 const { getQues, cAns } = require("./controllers/play_level2.controller.js");
+const questionModel = require("./models/questionL2FO.model.js");
 
 const app = express();
 app.set("view engine", "ejs");

@@ -105,9 +105,52 @@ const checkAns = async (req, res) => {
               answer.toLowerCase()
             ) {
               // TODO: make level complete functionality proper
-              user.score = user.score + 20;
-              user.currQues = user.currQues + 1;
-              await user.save();
+
+              switch (ques.count) {
+                case 0:
+                  user.score = user.score + 20 + 5;
+                  user.currQues = user.currQues + 1;
+                  await user.save();
+                  ques.count++;
+                  await ques.save();
+                  break;
+                case ques.count < 5:
+                  user.score = user.score + 20 + 4;
+                  user.currQues = user.currQues + 1;
+                  await user.save();
+                  ques.count++;
+                  await ques.save();
+                  break;
+                case ques.count < 10:
+                  user.score = user.score + 20 + 3;
+                  user.currQues = user.currQues + 1;
+                  await user.save();
+                  ques.count++;
+                  await ques.save();
+                  break;
+                case ques.count < 20:
+                  user.score = user.score + 20 + 2;
+                  user.currQues = user.currQues + 1;
+                  await user.save();
+                  ques.count++;
+                  await ques.save();
+                  break;
+                case ques.count < 50:
+                  user.score = user.score + 20 + 1;
+                  user.currQues = user.currQues + 1;
+                  await user.save();
+                  ques.count++;
+                  await ques.save();
+                  break;
+
+                default:
+                  user.score = user.score + 20;
+                  user.currQues = user.currQues + 1;
+                  await user.save();
+                  ques.count++;
+                  await ques.save();
+                  break;
+              }
               Question.findOne({ id: user.currQues }, async (error, Cques) => {
                 if (error) {
                   console.log(error);

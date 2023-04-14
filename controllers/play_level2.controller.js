@@ -174,9 +174,52 @@ const cAns = (req, res) => {
                 ques.answer.toLowerCase().replace(" ", "") ===
                 answer.toLowerCase()
               ) {
-                team.score = team.score + 20;
-                team.currQues = team.currQues + 1;
-                await team.save();
+                switch (ques.count) {
+                  case 0:
+                    team.score = team.score + 20 + 5;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 5:
+                    team.score = team.score + 20 + 4;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 10:
+                    team.score = team.score + 20 + 3;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 20:
+                    team.score = team.score + 20 + 2;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 50:
+                    team.score = team.score + 20 + 1;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    await ques.save();
+                    break;
+
+                  default:
+                    team.score = team.score + 20;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                }
 
                 const quesC = await QuestionL2CO.findOne({ id: team.currQues });
                 if (quesC) {
@@ -246,10 +289,56 @@ const cAns = (req, res) => {
                 data: " ",
               });
             } else {
-              if (ques.answer.toLowerCase() === answer.toLowerCase()) {
-                team.score = team.score + 20;
-                team.currQues = team.currQues + 1;
-                await team.save();
+              if (
+                ques.answer.toLowerCase().replace(" ", "") ===
+                answer.toLowerCase()
+              ) {
+                switch (ques.count) {
+                  case 0:
+                    team.score = team.score + 20 + 5;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 5:
+                    team.score = team.score + 20 + 4;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 10:
+                    team.score = team.score + 20 + 3;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 20:
+                    team.score = team.score + 20 + 2;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                  case ques.count < 50:
+                    team.score = team.score + 20 + 1;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    await ques.save();
+                    break;
+
+                  default:
+                    team.score = team.score + 20;
+                    team.currQues = team.currQues + 1;
+                    await team.save();
+                    ques.count++;
+                    await ques.save();
+                    break;
+                }
 
                 const quesF = await QuestionL2FO.findOne({ id: team.currQues });
                 if (quesF) {

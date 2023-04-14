@@ -9,6 +9,7 @@ const QuestionSchema = new mongoose.Schema({
   hint: String,
   isHintAvailable: Boolean,
   category: String,
+  count: Number,
 });
 
 module.exports = mongoose.model("Question", QuestionSchema);
