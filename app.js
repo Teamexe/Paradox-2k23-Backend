@@ -40,7 +40,7 @@ const {
   getTeamDetails,
 } = require("./controllers/team.controller.js");
 const { getQues, cAns } = require("./controllers/play_level2.controller.js");
-const questionModel = require("./models/questionL2FO.model.js");
+const questionModel = require("./models/question.model.js");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -141,6 +141,16 @@ app.use(
   hashVerifier.md5HashVerifier,
   level2Routes
 );
+
+app.get("/", (req, res) => {
+  questionModel.updateMany({}, { $set: { count: 0 } }, (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("New field added to all existing documents");
+    }
+  });
+});
 
 mongoose
   .connect(

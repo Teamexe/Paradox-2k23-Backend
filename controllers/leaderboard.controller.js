@@ -52,11 +52,8 @@ const displayLevel2LeaderBoard = async (req, res) => {
 
       if (!team) {
         return await res.status(200).json({
-          message: "Leaderboard Loaded",
-          success: true,
-          data: {
-            leaderboard: leaderboard,
-          },
+          message: "Team does not exist",
+          success: false,
         });
       } else if (team) {
         const teamPlace = await teamModel
@@ -65,19 +62,19 @@ const displayLevel2LeaderBoard = async (req, res) => {
           .exec();
         const teamPosition = teamPlace.length;
         return await res.status(200).json({
-          message: "Leaderboard Loaded",
-          success: true,
-          data: {
-            myRank: {
-              user_id: team._id,
-              user_name: team.teamName,
-              rank: teamPosition,
-              score: team.score,
-              display_picture:
-                "https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/1500922890-great-dane.jpg?crop=1.0xw:1xh;center,top&resize=980:*",
-            },
-            leaderboard: leaderboard,
-          },
+          message: "Team does not exist",
+          success: false,
+          // data: {
+          //   myRank: {
+          //     user_id: team._id,
+          //     user_name: team.teamName,
+          //     rank: teamPosition,
+          //     score: team.score,
+          //     display_picture:
+          //       "https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/1500922890-great-dane.jpg?crop=1.0xw:1xh;center,top&resize=980:*",
+          //   },
+          //   leaderboard: leaderboard,
+          // },
         });
       }
     } else {
