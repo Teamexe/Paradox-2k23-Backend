@@ -9,6 +9,7 @@ const QuestionL2COSchema = new mongoose.Schema({
   hint: String,
   category: String,
   isAnswerRequired: Boolean,
+  isHintAvailable: Boolean,
 });
 
 module.exports = mongoose.model("QuestionL2CO", QuestionL2COSchema);

@@ -9,6 +9,7 @@ const QuestionL2FOSchema = new mongoose.Schema({
   hint: String,
   category: String,
   isAnswerRequired: Boolean,
+  isHintAvailable: Boolean,
 });
 
 module.exports = mongoose.model("QuestionL2FO", QuestionL2FOSchema);

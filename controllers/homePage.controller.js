@@ -3,7 +3,7 @@ const Banner = require("../models/banner.model");
 const ParadoxUser = require("../models/paradoxUser.model");
 
 var level1StartsAt = 1681533000000;
-var level2StartsAt = 1681633800000;
+var level2StartsAt = 1681633680000;
 var level1EndsAt = 1681583400000;
 var level2EndsAt = 1681655400000;
 // var levelStartsInSeconds = level1StartsAt / 1000 - Date.now() / 1000;

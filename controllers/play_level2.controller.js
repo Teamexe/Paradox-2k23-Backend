@@ -4,7 +4,7 @@ const QuestionL2FO = require("../models/questionL2FO.model");
 const TeamModel = require("../models/team.model");
 
 var level1StartsAt = 1681533000000;
-var level2StartsAt = 1681633800000;
+var level2StartsAt = 1681633680000;
 var level1EndsAt = 1681583400000;
 var level2EndsAt = 1681655400000;
 
@@ -71,6 +71,8 @@ const getQues = (req, res) => {
                     question: ques.question,
                     image: ques.image,
                     isAnswerRequired: ques.isAnswerRequired,
+                    hint: ques.hint,
+                    isHintAvailable: ques.isHintAvailable,
                   },
                   officerType: {
                     name: user.name,
@@ -109,6 +111,8 @@ const getQues = (req, res) => {
                     question: ques.question,
                     image: ques.image,
                     isAnswerRequired: ques.isAnswerRequired,
+                    hint: ques.hint,
+                    isHintAvailable: ques.isHintAvailable,
                   },
                   officerType: {
                     name: user.name,
@@ -230,6 +234,8 @@ const cAns = (req, res) => {
                         question: quesC.question,
                         image: quesC.image,
                         isAnswerRequired: quesC.isAnswerRequired,
+                        hint: ques.hint,
+                        isHintAvailable: quesC.isHintAvailable,
                       },
                       officerType: {
                         name: user.name,
@@ -263,6 +269,8 @@ const cAns = (req, res) => {
                       question: ques.question,
                       image: ques.image,
                       isAnswerRequired: ques.isAnswerRequired,
+                      hint: ques.hint,
+                      isHintAvailable: ques.isHintAvailable,
                     },
                   },
                 });
@@ -339,6 +347,8 @@ const cAns = (req, res) => {
                         _id: quesF._id,
                         question: quesF.question,
                         image: quesF.image,
+                        hint: quesF.hint,
+                        isHintAvailable: quesF.isHintAvailable,
                       },
                       officerType: {
                         name: user.name,
@@ -371,6 +381,8 @@ const cAns = (req, res) => {
                       _id: ques._id,
                       question: ques.question,
                       image: ques.image,
+                      hint: ques.hint,
+                      isHintAvailable: ques.isHintAvailable,
                     },
                   },
                 });

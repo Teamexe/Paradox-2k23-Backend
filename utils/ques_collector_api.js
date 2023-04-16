@@ -36,15 +36,27 @@ router.post("/", async (req, res) => {
 
 router.post("/LCO", async (req, res) => {
   try {
-    const { questionNo, question, image, answer } = await req.body;
+    const {
+      id,
+      question,
+      image,
+      answer,
+      hint,
+      isHintAvailable,
+      isAnswerRequired,
+    } = await req.body;
 
-    console.log(questionNo, question, image, answer);
+    console.log(id, question, image, answer);
     const newQues = new QuestionL2CO({
       question: question,
-      id: questionNo,
+      id: id,
       image: image,
       answer: answer,
+      hint: hint,
+      isHintAvailable: isHintAvailable,
+      isAnswerRequired: isAnswerRequired,
     });
+
     await newQues.save();
 
     return res.status(200).json({
@@ -57,14 +69,25 @@ router.post("/LCO", async (req, res) => {
 
 router.post("/LFO", async (req, res) => {
   try {
-    const { questionNo, question, image, answer } = await req.body;
+    const {
+      id,
+      question,
+      image,
+      answer,
+      hint,
+      isHintAvailable,
+      isAnswerRequired,
+    } = await req.body;
 
-    console.log(questionNo, question, image, answer);
-    const newQues = new QuestionL2CO({
+    console.log(id, question, image, answer);
+    const newQues = new QuestionL2FO({
       question: question,
-      id: questionNo,
+      id: id,
       image: image,
       answer: answer,
+      hint: hint,
+      isHintAvailable: isHintAvailable,
+      isAnswerRequired: isAnswerRequired,
     });
     await newQues.save();
 

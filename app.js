@@ -43,6 +43,8 @@ const {
 const { getQues, cAns } = require("./controllers/play_level2.controller.js");
 const questionModel = require("./models/question.model.js");
 
+const { update } = require("./utils/top50creater.js");
+
 const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.json());
@@ -152,9 +154,7 @@ app.use(
 //     }
 //   });
 // });
-app.get("/", (req, res) => {
-  res.send("v3");
-});
+app.get("/", update);
 
 mongoose
   .connect(
