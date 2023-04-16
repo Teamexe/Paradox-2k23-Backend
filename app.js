@@ -154,7 +154,9 @@ app.use(
 //     }
 //   });
 // });
-app.get("/", update);
+app.get("/", (req, res) => {
+  res.send("v4");
+});
 
 mongoose
   .connect(
