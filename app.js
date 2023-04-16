@@ -55,8 +55,8 @@ require("dotenv").config();
 
 app.post(
   "/home",
-  // hashVerifier.base64Decoder,
-  // hashVerifier.md5HashVerifier,
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
   homeController.homePage
 );
 
@@ -89,8 +89,8 @@ app.use(
 // Leaderboard route
 app.use(
   "/leaderboard",
-  // hashVerifier.base64Decoder,
-  // hashVerifier.md5HashVerifier,
+  hashVerifier.base64Decoder,
+  hashVerifier.md5HashVerifier,
   leaderBoardRoutes
 );
 
@@ -153,7 +153,7 @@ app.use(
 //   });
 // });
 app.get("/", (req, res) => {
-  res.send("v1");
+  res.send("v2");
 });
 
 mongoose
