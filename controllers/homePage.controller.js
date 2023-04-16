@@ -87,8 +87,10 @@ const homePage = async (req, res) => {
   top.forEach((sUser) => {
     if (sUser.uid === uid) {
       isInTop = true;
+      player.isInTop = true;
     }
   });
+  await player.save();
   // const userIndex = top40.findIndex((u) => u.uid.equals(uid));
   // const isInTop40 = userIndex !== -1;
 
@@ -100,7 +102,7 @@ const homePage = async (req, res) => {
         playerName: player.name,
         isSolo: !player.isInTeam,
         teamName: player.teamName,
-        isLevelLocked: !isInTop,
+        isLevelLocked: !player.isInTop,
         nextQuestionNumber: player.currQues,
         levelData: {
           levelNo: 2,

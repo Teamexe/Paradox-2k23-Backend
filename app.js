@@ -6,6 +6,7 @@ const port = process.env.PORT || 8080;
 const User = require("./models/User.js");
 
 const Question = require("./models/question.model.js");
+const paradoxUser = require("./models/paradoxUser.model.js");
 // const authController = require("./controllers/auth.controller.js");
 const userController = require("./controllers/user.controller.js");
 const hashVerifier = require("./middleware/authMiddleware.js");
@@ -54,8 +55,8 @@ require("dotenv").config();
 
 app.post(
   "/home",
-  hashVerifier.base64Decoder,
-  hashVerifier.md5HashVerifier,
+  // hashVerifier.base64Decoder,
+  // hashVerifier.md5HashVerifier,
   homeController.homePage
 );
 
@@ -88,8 +89,8 @@ app.use(
 // Leaderboard route
 app.use(
   "/leaderboard",
-  hashVerifier.base64Decoder,
-  hashVerifier.md5HashVerifier,
+  // hashVerifier.base64Decoder,
+  // hashVerifier.md5HashVerifier,
   leaderBoardRoutes
 );
 
@@ -142,14 +143,17 @@ app.use(
   level2Routes
 );
 
+// app.get("/", (req, res) => {
+//   paradoxUser.updateMany({}, { $set: { isInTop: false } }, (err, res) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("New field added to all existing documents");
+//     }
+//   });
+// });
 app.get("/", (req, res) => {
-  questionModel.updateMany({}, { $set: { count: 0 } }, (err, res) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("New field added to all existing documents");
-    }
-  });
+  res.send("v1");
 });
 
 mongoose

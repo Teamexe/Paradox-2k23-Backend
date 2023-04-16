@@ -20,6 +20,7 @@ const ParadoxUserSchema = new mongoose.Schema({
   teamCode: String,
   teamName: String,
   isSolo: Boolean,
+  isInTop: Boolean,
   isLevelLocked: Boolean,
   nextQuestionNumber: Number,
   roll: String,
