@@ -4,7 +4,7 @@ const QuestionL2FO = require("../models/questionL2FO.model");
 const TeamModel = require("../models/team.model");
 
 var level1StartsAt = 1681533000000;
-var level2StartsAt = 1681626600000;
+var level2StartsAt = 1681633800000;
 var level1EndsAt = 1681583400000;
 var level2EndsAt = 1681655400000;
 
@@ -128,7 +128,11 @@ const getQues = (req, res) => {
             }
           });
         } else {
-          console.log("No role");
+          return await res.status(200).json({
+            success: false,
+            message:
+              "This is a team based level.\nGo to Profile Page and create a team",
+          });
         }
       }
     });
